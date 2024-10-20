@@ -7,11 +7,11 @@ function Profile() {
   return (
     <div
       className="w-28 h-28 rounded-full overflow-hidden border-2 border-secondary-500"
-    //   onMouseEnter={() => setHovered(true)}
-    //   onMouseLeave={() => setHovered(false)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <Image
-        src={hovered ? "/doge.gif" : "/pet2.png"} // Replace with a profile image
+        src={hovered ? "/doge.gif" : "/pet1.jpg"} // Replace with a profile image
         alt="Profile picture"
         width={112}
         height={112}

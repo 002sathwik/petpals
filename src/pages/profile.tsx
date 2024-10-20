@@ -1,20 +1,23 @@
 "use client";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import ProfilePic from "@/components/ProfilePic";
 gsap.registerPlugin(ScrollTrigger);
 
-const imageLinks = [
-  "/post/p1.jpg",
-  "/post/p2.jpg",
-  "/post/p3.jpeg",
-  "/post/p4.jp3g",
-  "/post/p5.jpeg",
-];
+const MAXHUNGER = 10;
 
 export default function Profile() {
+  const [hunger, setHunger] = useState(4);
+  const [happiness, setHappiness] = useState(4);
+
+  const feed = () => {
+    setHunger((hu) => hu + 1);
+    setHappiness((hap) => hap + 1);
+  };
+
   useGSAP(() => {
     const cards = gsap.utils.toArray<HTMLDivElement>(".developer-card");
 
@@ -50,16 +53,9 @@ export default function Profile() {
     <div className="bg-gray-100 min-h-screen text-black pt-8">
       {/* Profile Header */}
       <div className="max-w-4xl mx-auto p-6 bg-primary-200 rounded-lg">
-        <div className="flex items-center space-x-6 rounded">
-          <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-secondary-500">
-            <Image
-              src="/pet1.jpg"
-              alt="Profile picture"
-              width={112}
-              height={112}
-              className="object-cover"
-            />
-          </div>
+        <div className="flex items-start space-x-6 rounded justify-start">
+
+          <ProfilePic/>
           {/* Profile Info */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center space-x-4 mb-4">
@@ -83,15 +79,44 @@ export default function Profile() {
               <p className="text-gray-600">I am ti</p>
             </div>
 
-            <button className="px-4 py-1 border rounded-md font-semibold w-fit bg-secondary-300">
+            <button
+              onClick={feed}
+              className="px-4 py-1 border rounded-md font-semibold bg-secondary-300 w-fit"
+            >
               Feed
             </button>
+
+            <div>
+              <strong>Hunger</strong>
+              <div className="flex gap-2 items-center">
+                {[...Array(MAXHUNGER)].map((_, i) => {
+                  if (i < hunger) {
+                    return <span>fill</span>;
+                  } else {
+                    return <span>notfill</span>;
+                  }
+                })}
+              </div>
+            </div>
+
+            <div>
+              <strong>Hunger</strong>
+              <div className="flex gap-2 items-center">
+                {[...Array(MAXHUNGER)].map((_, i) => {
+                  if (i < hunger) {
+                    return <span>fill</span>;
+                  } else {
+                    return <span>notfill</span>;
+                  }
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Post Grid */}
-      <div className="max-w-4xl mx-auto mt-6 rounded-lg bg-primary-200 p-4">
+      <div className="max-w-4xl mx-auto mt-6 rounded-lg bg-primary-200 p-4 overflow-hidden">
         <div className="grid  grid-cols-1 md:grid-cols-3 gap-2">
           {/* Example Post Items */}
           {[...Array(9)].map((_, i) => (
