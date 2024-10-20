@@ -17,28 +17,29 @@ function Hero() {
           Join a vibrant community of pet lovers and enthusiasts! Share tips, stories, and photos of your furry friends.
         </p>
 
-        <div className="flex space-x-4 mt-6 cursor-pointer z-30">
-          <a href="/feed">
-            <button className="bg-yellow-500 rubik-mono-one-regular text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-              Feed
-            </button>
-          </a>
-          <a href="/profile">
-            <button className="bg-yellow-500 rubik-mono-one-regular  text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-              Profile
-            </button>
-          </a>
-          <a href="/games">
-            <button className="bg-yellow-500 rubik-mono-one-regular  text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-             Games
-            </button>
-          </a>
-          <a href="/profile1">
-            <button className="bg-yellow-500 rubik-mono-one-regular  text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition">
-             Friend
-            </button>
-          </a>
-        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 cursor-pointer z-30">
+  <a href="/feed">
+    <button className="bg-yellow-500 rubik-mono-one-regular text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition w-full">
+      Feed
+    </button>
+  </a>
+  <a href="/profile">
+    <button className="bg-yellow-500 rubik-mono-one-regular text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition w-full">
+      Profile
+    </button>
+  </a>
+  <a href="/games">
+    <button className="bg-yellow-500 rubik-mono-one-regular text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition w-full">
+      Games
+    </button>
+  </a>
+  <a href="/profile1">
+    <button className="bg-yellow-500 rubik-mono-one-regular text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition w-full">
+      Friend
+    </button>
+  </a>
+</div>
+
       </BackgroundLines>
 
       {/* Footer at the bottom of the screen */}
