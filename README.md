@@ -5,7 +5,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
+
+steps for viweing
+
+1. git clone https://github.com/ASTRONOMIA-DEV/design4dev.git
+
+2 . npm  install  or bun i
+
+3 . npm run dev
 # or
 yarn dev
 # or
