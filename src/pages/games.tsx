@@ -56,11 +56,11 @@
 //           width: 100%;
 //           padding-bottom: 115%; /* Maintain the hexagon aspect ratio */
 //           clip-path: polygon(
-//             50% 0%, 
-//             100% 25%, 
-//             100% 75%, 
-//             50% 100%, 
-//             0% 75%, 
+//             50% 0%,
+//             100% 25%,
+//             100% 75%,
+//             50% 100%,
+//             0% 75%,
 //             0% 25%
 //           );
 //         }
@@ -72,11 +72,11 @@
 //           right: 0;
 //           height: 30%; /* Adjust height to give room for text */
 //           clip-path: polygon(
-//             50% 0%, 
-//             100% 25%, 
-//             100% 75%, 
-//             50% 100%, 
-//             0% 75%, 
+//             50% 0%,
+//             100% 25%,
+//             100% 75%,
+//             50% 100%,
+//             0% 75%,
 //             0% 25%
 //           );
 //           background: white;
@@ -87,37 +87,102 @@
 //   );
 // }
 
-
-
 // pages/games.js
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import FluidAnimation from '@/components/fluidEffect/FluidAnimation';
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(ScrollTrigger);
 
 const games = [
-  { id: 1, name: 'mouse-climb', image: '/games/clim.jpeg', url: 'https://poki.com/en/g/mouse-mouse-climb-the-house' },
-  { id: 2, name: 'up-together', image: '/games/climb.jpeg', url: 'https://poki.com/en/g/up-together' },
-  { id: 3, name: 'fish-eat-fish', image: '/games/eat-fish.jpeg', url: 'https://poki.com/en/g/fish-eat-fish' },
-  { id: 4, name: 'jungle-friends', image: '/games/j-f.jpeg', url: 'https://poki.com/en/g/jungle-friends' },
-  { id: 5, name: 'dog-life-simulator', image: '/games/dog-life.png', url: 'https://poki.com/en/g/dog-life-simulator' },
-  { id: 6, name: 'flyordie-io', image: '/games/evo.avif', url: 'https://poki.com/en/g/flyordie-io' },
+  {
+    id: 1,
+    name: "mouse-climb",
+    image: "/games/clim.jpeg",
+    url: "https://poki.com/en/g/mouse-mouse-climb-the-house",
+  },
+  {
+    id: 2,
+    name: "up-together",
+    image: "/games/climb.jpeg",
+    url: "https://poki.com/en/g/up-together",
+  },
+  {
+    id: 3,
+    name: "fish-eat-fish",
+    image: "/games/eat-fish.jpeg",
+    url: "https://poki.com/en/g/fish-eat-fish",
+  },
+  {
+    id: 4,
+    name: "jungle-friends",
+    image: "/games/j-f.jpeg",
+    url: "https://poki.com/en/g/jungle-friends",
+  },
+  {
+    id: 5,
+    name: "dog-life-simulator",
+    image: "/games/dog-life.png",
+    url: "https://poki.com/en/g/dog-life-simulator",
+  },
+  {
+    id: 6,
+    name: "flyordie-io",
+    image: "/games/evo.avif",
+    url: "https://poki.com/en/g/flyordie-io",
+  },
 ];
 
 export default function Games() {
   const [hoveredGame, setHoveredGame] = useState<number | null>(null);
 
+  useGSAP(() => {
+    const cards = gsap.utils.toArray<HTMLDivElement>(".game-card");
+
+    cards.forEach((element, i) => {
+      gsap.set(element, { opacity: 0 });
+      gsap.from(element, {
+        y: 200,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: element,
+          start: "top 100%",
+        },
+      });
+    });
+
+    ScrollTrigger.batch(".game-card", {
+      onEnter: (batch) =>
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          stagger: { each: 0.15, grid: [1, 3] },
+          overwrite: true,
+        }),
+      onLeaveBack: (batch) =>
+        gsap.set(batch, { opacity: 0, y: 100, overwrite: true }),
+    });
+
+    ScrollTrigger.addEventListener("refreshInit", () => {
+      gsap.set(".game-card", { y: 0 });
+    });
+  });
+
   return (
     <div className="min-h-screen  p-10">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-yellow-200 md:text-6xl  mb-4 rubik-mono-one-regular">Pet Game Space</h1>
+        <h1 className="text-4xl font-bold text-yellow-200 md:text-6xl  mb-4 rubik-mono-one-regular">
+          Pet Game Space
+        </h1>
         <p className="text-white">Choose a game and play with your pet!</p>
       </div>
-  
+
       {/* Game Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {games.map((game) => (
-          <Link href={game.url} key={game.id}>
+          <Link href={game.url} key={game.id} className="game-card">
             <div
               onMouseEnter={() => setHoveredGame(game.id)}
               onMouseLeave={() => setHoveredGame(null)}
@@ -130,16 +195,18 @@ export default function Games() {
                   layout="fill" // Use fill to fill the hexagon
                   objectFit="cover" // Cover to maintain aspect ratio and fill
                   className={`transition-transform duration-500 ${
-                    hoveredGame === game.id ? 'scale-110' : 'scale-100'
+                    hoveredGame === game.id ? "scale-110" : "scale-100"
                   }`}
                 />
+                <div className="p-4 bg-white text-center hexagon-info">
+                  <h3 className="text-xl font-semibold text-green-700">
+                    {game.name}
+                  </h3>
+                  <p className="text-gray-500">Click to play</p>
+                </div>
               </div>
 
               {/* Game Info */}
-              <div className="p-4 bg-white text-center hexagon-info">
-                <h3 className="text-xl font-semibold text-green-700">{game.name}</h3>
-                <p className="text-gray-500">Click to play</p>
-              </div>
             </div>
           </Link>
         ))}
@@ -152,11 +219,11 @@ export default function Games() {
           height: 0;
           padding-bottom: 115%; /* Maintain the hexagon aspect ratio */
           clip-path: polygon(
-            50% 0%, 
-            100% 25%, 
-            100% 75%, 
-            50% 100%, 
-            0% 75%, 
+            50% 0%,
+            100% 25%,
+            100% 75%,
+            50% 100%,
+            0% 75%,
             0% 25%
           );
           overflow: hidden; // Hide any overflow from the hexagon
@@ -168,19 +235,10 @@ export default function Games() {
           left: 0;
           right: 0;
           height: 30%; /* Adjust height to give room for text */
-          clip-path: polygon(
-            50% 0%, 
-            100% 25%, 
-            100% 75%, 
-            50% 100%, 
-            0% 75%, 
-            0% 25%
-          );
           background: white;
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
         }
       `}</style>
-      <FluidAnimation />
     </div>
   );
 }
