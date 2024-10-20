@@ -10,7 +10,7 @@ steps for viweing
 
 1. git clone https://github.com/ASTRONOMIA-DEV/design4dev.git
 
-2 . npm  install
+2 . npm  install  or bun i
 
 3 . npm run dev
 # or
