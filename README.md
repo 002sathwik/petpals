@@ -8,11 +8,11 @@ First, run the development server:
 
 steps for viweing
 
-git clone
+1. git clone https://github.com/ASTRONOMIA-DEV/design4dev.git
 
-npm i
+2 . npm  install
 
-npm run dev
+3 . npm run dev
 # or
 yarn dev
 # or
