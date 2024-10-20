@@ -1,8 +1,6 @@
 import Image from "next/image";
 import localFont from "next/font/local";
 import Hero from "@/components/hero";
-import ScrollSection from "@/components/scroolSection";
-import Footer from "@/components/footer";
 import FluidAnimation from "@/components/fluidEffect/FluidAnimation";
 
 const geistSans = localFont({
@@ -21,8 +19,7 @@ export default function Home() {
     <>
       <Hero />
       <FluidAnimation />
-      <ScrollSection />
-      <Footer />
+
     </>
   );
 }

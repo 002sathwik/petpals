@@ -1,4 +1,5 @@
 
+import confetti from 'canvas-confetti';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -6,7 +7,7 @@ import { useState } from 'react';
 const petConversations = [
   { id: 1, name: 'Buddy', avatar: '/p4.jpeg', message: 'Woof! Wanna play fetch?' },
   { id: 2, name: 'Whiskers', avatar: '/p5.avif', message: 'Meow! I found a new toy!' },
-  { id: 3, name: 'Fluffy', avatar: '/p8.jpg', message: 'Let’s go on an adventure!' },
+  { id: 3, name: 'Fluffy', avatar: '/p8.jpeg', message: 'Let’s go on an adventure!' },
 ];
 
 
@@ -18,12 +19,61 @@ const petMessages = [
 
 export default function Messages() {
   const [activeChat, setActiveChat] = useState(petConversations[0]);
+  
+  const handleClick = () => {
+    const scalar = 2;
+    const triangle = confetti.shapeFromPath({
+        path: "M0 10 L5 0 L10 10z",
+    });
+    const square = confetti.shapeFromPath({
+        path: "M0 0 L10 0 L10 10 L0 10 Z",
+    });
+    const coin = confetti.shapeFromPath({
+        path: "M5 0 A5 5 0 1 0 5 10 A5 5 0 1 0 5 0 Z",
+    });
+    const tree = confetti.shapeFromPath({
+        path: "M5 0 L10 10 L0 10 Z",
+    });
 
+    const defaults = {
+        spread: 360,
+        ticks: 60,
+        gravity: 0,
+        decay: 0.96,
+        startVelocity: 20,
+        shapes: [triangle, square, coin, tree],
+        scalar,
+    };
+
+    const shoot = () => {
+        confetti({
+            ...defaults,
+            particleCount: 30,
+        });
+
+        confetti({
+            ...defaults,
+            particleCount: 5,
+        });
+
+        confetti({
+            ...defaults,
+            particleCount: 15,
+            scalar: scalar / 2,
+            shapes: ["circle"],
+        });
+    };
+
+    // Trigger confetti with a slight delay for visual effect
+    setTimeout(shoot, 0);
+    setTimeout(shoot, 100);
+    setTimeout(shoot, 200);
+};
   return (
     <div className="h-screen flex flex-col sm:flex-row bg-green-50">
-      {/* Sidebar - Pet Conversations */}
-      <aside className="w-full sm:w-1/4 bg-white p-4 border-b sm:border-r sm:border-b-0">
-        <h2 className="text-xl font-semibold mb-4 text-green-700">PetPals</h2>
+     
+      <aside className="w-full sm:w-1/4 bg-primary-300  p-4 border-b sm:border-r sm:border-b-0">
+        <h2 className="text-xl md:text-3xl font-semibold mb-4 rubik-mono-one-regular text-green-700">PetPals</h2>
         <ul>
           {petConversations.map((conversation) => (
             <li
@@ -51,8 +101,8 @@ export default function Messages() {
 
 
       <main className="flex-1 flex flex-col justify-between">
-        {/* Chat Header */}
-        <header className="flex items-center p-4 border-b bg-white">
+       
+        <header className="flex items-center p-4 border-b bg-primary-300">
           <Image
             src={activeChat.avatar}
             alt={activeChat.name}
@@ -75,11 +125,11 @@ export default function Messages() {
             >
               <div
                 className={`${
-                  message.sender === 'Me' ? 'bg-green-500 text-white' : 'bg-gray-200'
+                  message.sender === 'Me' ? 'bg-green-500 text-white' : 'bg-gray-200 text-black'
                 } p-3 rounded-lg max-w-xs`}
               >
                 <p>{message.text}</p>
-                <span className="text-xs text-gray-400 block mt-1">{message.time}</span>
+                <span className="text-xs text-gray-00 block mt-1">{message.time}</span>
               </div>
             </div>
           ))}
@@ -92,12 +142,15 @@ export default function Messages() {
               placeholder="Send a message to your pet..."
               className="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
             />
+               <div className="relative">
             <button
-              type="submit"
-              className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600"
+                type="button"
+                onClick={handleClick}
+                className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600"
             >
-              Send
+                Send
             </button>
+        </div>
           </form>
         </div>
       </main>

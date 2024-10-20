@@ -9,11 +9,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const imageLinks = [
-    { src: "/post/p11.avif", description: "A beautiful sunset over the mountains, perfect for a cozy evening.", avatar: "/pet1.jpg" },
-    { src: "/post/p13.jpeg", description: "An adorable puppy playing in the grass, full of energy and joy.", avatar: "/pet1.jpg" },
-    { src: "/post/p8.jpeg", description: "A curious kitten exploring its surroundings, always up for an adventure.", avatar: "/pet1.jpg" },
-    { src: "/post/p9.jpeg", description: "A peaceful moment by the lake, where pets and nature connect beautifully.", avatar: "/pet1.jpg" },
-    { src: "/post/p10.jpeg", description: "Two friends enjoying a playful day at the park, sharing laughter and fun.", avatar: "/pet1.jpg" },
+    { src: "/post/p11.avif", description: "A beautiful sunset over the mountains, perfect for a cozy evening.", avatar: "/pet2.jpg" },
+    { src: "/post/p13.jpeg", description: "An adorable puppy playing in the grass, full of energy and joy.", avatar: "/pet2.jpg" },
+    { src: "/post/p8.jpeg", description: "A curious kitten exploring its surroundings, always up for an adventure.", avatar: "/pet2.jpg" },
+    { src: "/post/p9.jpeg", description: "A peaceful moment by the lake, where pets and nature connect beautifully.", avatar: "/pet2.jpg" },
+    { src: "/post/p10.jpeg", description: "Two friends enjoying a playful day at the park, sharing laughter and fun.", avatar: "/pet2.jpg" },
 ];
 
 
@@ -57,7 +57,7 @@ export default function Profile() {
                 <div className="flex items-center space-x-6 rounded">
                     <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-secondary-500">
                         <Image
-                            src="/pet1.jpg"
+                            src="/pet2.jpg"
                             alt="Profile picture"
                             width={112}
                             height={112}
@@ -67,7 +67,7 @@ export default function Profile() {
                     {/* Profile Info */}
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center space-x-4 mb-4">
-                            <h2 className="text-2xl font-semibold rubik-mono-one-regular  ">Timmy</h2>
+                            <h2 className="text-2xl font-semibold rubik-mono-one-regular  ">Rubby</h2>
                             <button className="px-4 py-1 border rounded-md font-semibold bg-secondary-300">
                                 Edit Profile
                             </button>
