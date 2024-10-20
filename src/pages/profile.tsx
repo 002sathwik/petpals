@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { FaHeart, FaComment } from 'react-icons/fa';
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
+import ProfilePic from "@/components/ProfilePic";
 gsap.registerPlugin(ScrollTrigger);
 
 

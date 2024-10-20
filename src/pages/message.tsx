@@ -10,11 +10,10 @@ const petConversations = [
   { id: 3, name: 'Fluffy', avatar: '/p8.jpeg', message: 'Let’s go on an adventure!' },
 ];
 
-
 const petMessages = [
-  { id: 1, sender: 'Buddy', text: 'Woof! Wanna play fetch?', time: '2:30 PM' },
-  { id: 2, sender: 'Me', text: 'Sure, let’s go to the park!', time: '2:31 PM' },
-  { id: 3, sender: 'Buddy', text: 'Yay! I love the park!', time: '2:32 PM' },
+  { id: 1, sender: "Buddy", text: "Woof! Wanna play fetch?", time: "2:30 PM" },
+  { id: 2, sender: "Me", text: "Sure, let’s go to the park!", time: "2:31 PM" },
+  { id: 3, sender: "Buddy", text: "Yay! I love the park!", time: "2:32 PM" },
 ];
 
 export default function Messages() {
@@ -79,8 +78,8 @@ export default function Messages() {
             <li
               key={conversation.id}
               onClick={() => setActiveChat(conversation)}
-              className={`flex items-center space-x-4 p-3 cursor-pointer hover:bg-green-100 rounded-md ${
-                activeChat.id === conversation.id ? 'bg-green-200' : ''
+              className={`flex items-center space-x-4 p-3 cursor-pointer hover:bg-primary-100 rounded-md ${
+                activeChat.id === conversation.id ? "bg-primary-200" : ""
               }`}
             >
               <Image
@@ -91,14 +90,17 @@ export default function Messages() {
                 className="rounded-full"
               />
               <div>
-                <h3 className="font-semibold text-green-800">{conversation.name}</h3>
-                <p className="text-gray-500 text-sm">{conversation.message}</p>
+                <h3 className="font-semibold text-primary-600">
+                  {conversation.name}
+                </h3>
+                <p className="text-primary-500 text-sm">
+                  {conversation.message}
+                </p>
               </div>
             </li>
           ))}
         </ul>
       </aside>
-
 
       <main className="flex-1 flex flex-col justify-between">
        
@@ -111,17 +113,20 @@ export default function Messages() {
             className="rounded-full"
           />
           <div className="ml-4">
-            <h3 className="font-semibold text-green-800">{activeChat.name}</h3>
+            <h3 className="font-semibold text-primary-800">
+              {activeChat.name}
+            </h3>
             <p className="text-sm text-gray-500">Active now</p>
           </div>
         </header>
 
-  
-        <div className="flex-1 p-4 overflow-y-scroll bg-green-50">
+        <div className="flex-1 p-4 overflow-y-scroll bg-primary-50">
           {petMessages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${message.sender === 'Me' ? 'justify-end' : ''} mb-4`}
+              className={`flex ${
+                message.sender === "Me" ? "justify-end" : ""
+              } mb-4`}
             >
               <div
                 className={`${
@@ -140,7 +145,7 @@ export default function Messages() {
             <input
               type="text"
               placeholder="Send a message to your pet..."
-              className="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
                <div className="relative">
             <button
