@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -176,4 +178,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.rubik-mono-one-regular {
+  font-family: "Rubik Mono One", monospace;
+  font-weight: 400;
+  font-style: normal;
 }

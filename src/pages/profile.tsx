@@ -1,14 +1,25 @@
 // pages/profile.js
 import Image from 'next/image';
 
+
+
+const imageLinks = [
+    '/post/p1.jpg',
+    '/post/p2.jpg',
+    '/post/p3.jpeg',
+    '/post/p4.jp3g',
+    '/post/p5.jpeg',
+  ];
+
+
 export default function Profile() {
   return (
     <div className="bg-gray-100 min-h-screen">
-      {/* Profile section */}
+   
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-sm">
         <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-6 space-y-4 sm:space-y-0">
           
-          {/* Profile picture */}
+
           <div className="w-28 h-28 rounded-full overflow-hidden">
             <Image
               src="/pet1.jpg"
@@ -19,7 +30,7 @@ export default function Profile() {
             />
           </div>
 
-          {/* Profile details */}
+         
           <div className="text-center sm:text-left">
             <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mb-4">
               <h2 className="text-2xl font-semibold">username</h2>
@@ -51,17 +62,17 @@ export default function Profile() {
       {/* Posts section */}
       <div className="max-w-4xl mx-auto mt-6">
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          {[...Array(9)].map((_, i) => (
-            <div key={i} className="w-full aspect-w-1 aspect-h-1 bg-gray-200">
-              <Image
-                src="/pet2.jpg"
-                alt="Post image"
-                width={500}
-                height={500}
-                className="object-cover"
-              />
-            </div>
-          ))}
+         {imageLinks.map((src, i) => (
+        <div key={i} className="w-full aspect-w-1 aspect-h-1 bg-gray-200">
+          <Image
+            src={src}
+            alt={`Post image ${i + 1}`}
+            width={500}
+            height={500}
+            className="object-cover"
+          />
+        </div>
+      ))}
         </div>
       </div>
     </div>
